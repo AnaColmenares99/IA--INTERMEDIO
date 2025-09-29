@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estudio de Inteligencia Artificial - PLN</title>
+    <style>
+        /* Estilos CSS */
+        .contenedor {
+            display: flex;
+            justify-content: center; /* centra todo el grupo */
+            gap: 20px; /* espacio entre imágenes */
+        }
+        .contenedor img {
+            width: 200px; /* ajusta el tamaño */
+        }
+        .centrar {
+            display: block;
+            margin: 0 auto;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f9;
+            color: #333;
+        }
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        /* ESTILOS DEL ENCABEZADO: Aplicados a h3 y el span de la versión */
+        header h3 {
+            font-size: 1.1em; 
+            font-weight: normal; 
+            color: #c4d7ee; /* Color más sutil para los nombres */
+            margin: 0; 
+            padding: 0;
+        }
+        header span {
+            font-size: 0.9em; 
+            color: #d1e5ff; /* Color para la versión */
+            display: block;
+            margin-top: 5px;
+            padding-bottom: 10px;
+        }
+        /* FIN DE ESTILOS DEL ENCABEZADO */
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+        .module-tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #ccc;
+        }
+        .module-tab {
+            padding: 15px 25px;
+            cursor: pointer;
+            background-color: #eee;
+            border: 1px solid #ccc;
+            border-bottom: none;
+            margin-right: 5px;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .module-tab:hover {
+            background-color: #ddd;
+        }
+        .module-tab.active {
+            background-color: white;
+            border-color: #007bff;
+            border-bottom: 3px solid white; /* Simula que la pestaña se une al contenido */
+            color: #007bff;
+        }
+        /* CAMBIO CLAVE: Se eliminó el border-top de aquí para quitar la línea azul gruesa */
+        .module-content {
+            padding: 20px 0;
+            /* border-top: 3px solid #007bff; <-- ELIMINADO/CAMBIADO */
+            border-top: none; 
+        }
+        /* El resto de los estilos .module-content se mantienen */
+
+        /* Estilos para el Módulo 1 (PLN) */
+        .pln-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #007bff;
+        }
+        .pln-tab {
+            padding: 10px 15px;
+            cursor: pointer;
+            background-color: #e9ecef;
+            border: 1px solid #007bff;
+            border-bottom: none;
+            margin-right: 5px;
+            margin-bottom: -1px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            font-size: 0.9em;
+            transition: background-color 0.3s;
+        }
+        .pln-tab:hover {
+            background-color: #cfd8e3;
+        }
+        .pln-tab.active {
+            background-color: #007bff;
+            color: white;
+            border-color: #007bff;
+            border-bottom: 1px solid white;
+        }
+        .pln-content {
+            display: none;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 0 0 8px 8px;
+            line-height: 1.6;
+        }
+        .pln-content.active {
+            display: block;
+        }
+        
+        h2, h3 {
+            color: #007bff;
+            border-bottom: 1px dashed #ccc;
+            padding-bottom: 5px;
+        }
+        ul {
+            list-style: disc;
+            margin-left: 20px;
+        }
+        .feature-box {
+            background-color: #e6f7ff;
+            border-left: 5px solid #007bff;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 4px;
+        }
+        .exercise-detail {
+            margin-top: 15px;
+            padding: 15px;
+            border: 1px dashed #007bff;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+        }
+        .empty-content {
+            text-align: center;
+            padding: 50px;
+            color: #6c757d;
+            font-style: italic;
+            background-color: #e9ecef;
+            border-radius: 4px;
+        }
+        .code-block {
+            background-color: #272822;
+            color: #f8f8f2;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin: 10px 0;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🔬 Inteligencia Artificial Intermedio 🌐</h1>
+        <h3>Ana María Colmenares, Angel Eduardo Cruzado, Eduing Ricardo Gonzalez</h3>
+        <span>V1.0</span>
+    </header>
+
+    <div class="container">
+        <div class="module-tabs" id="module-tabs">
+            <div class="module-tab active" data-module="module1">Módulo 1: PLN</div>
+            <div class="module-tab" data-module="module2">Módulo 2</div>
+            <div class="module-tab" data-module="module3">Módulo 3</div>
+        </div>
+
+        <div id="module1" class="module-content active">
+            <h2>Módulo 1: Procesamiento del Lenguaje Natural (PLN) 🗣️</h2>
+
+            <div class="pln-tabs" id="pln-tabs">
+                <div class="pln-tab active" data-pln="pln-que-es">¿Qué es?</div>
+                <div class="pln-tab" data-pln="pln-objetivos">Objetivos Principales</div>
+                <div class="pln-tab" data-pln="pln-tecnicas">Técnicas Utilizadas</div>
+                <div class="pln-tab" data-pln="pln-caracteristicas">Características y Funciones</div>
+                <div class="pln-tab" data-pln="pln-ejercicio1">Ejercicio 1: NLTK y Análisis de Sentimiento (Español)</div>
+                <div class="pln-tab" data-pln="pln-ejercicio2">Ejercicio 2: Análisis Multimodelo (Gradio, Pandas, etc.)</div>
+                <div class="pln-tab" data-pln="pln-ejercicio3">Ejercicio 3: Análisis de Sentimientos con Flask</div>
+                <div class="pln-tab" data-pln="pln-ejercicio4">Ejercicio 4: Analizador de Texto en Español (Gradio)</div>
+                <div class="pln-tab" data-pln="pln-ejercicio5">Ejercicio 5: Subir Analizador a Hugging Face (Gradio y Deep Translator)</div>
+                <div class="pln-tab" data-pln="pln-ejercicio6">Ejercicio 6: Analizador de Twitter con X Developers</div>
+            </div>
+
+            <div id="pln-que-es" class="pln-content active">
+                <h3>¿Qué es el Procesamiento del Lenguaje Natural (PLN)?</h3>
+                <p>El Procesamiento de Lenguaje Natural es una rama de la Inteligencia Artificial (IA) que se encarga de que las máquinas entiendan, interpreten y generen lenguaje humano (texto o voz).</p>
+                <p>Para lograrlo, se utilizan técnicas de la lingüística computacional y del aprendizaje automático para analizar y procesar grandes volúmenes de datos de texto o voz, lo que permite a las máquinas extraer información, entender la intención y el sentimiento de los usuarios y facilitar la comunicación entre humanos y máquinas en tiempo real.</p>
+            </div>
+
+            <div id="pln-objetivos" class="pln-content">
+                <h3>Objetivos Principales del PLN 🎯</h3>
+                <p>El PLN persigue diversos objetivos clave para lograr la comprensión y generación del lenguaje:</p>
+                <ul>
+                    <li><b>Comprender el lenguaje:</b> que la computadora interprete lo que una persona escribe o dice.</li>
+                    <li><b>Generar lenguaje:</b>que la máquina pueda responder de forma coherente, como lo hago yo.</li>
+                    <li><b>Ánalisis de Sentimiento:</b>Determinar la actitud, opinión o emoción (positiva, negativa o neutral) expresada en un texto.</li>
+                    <li><b>Traducción Automática:</b> Convertir texto de un idioma a otro manteniendo el significado y el contexto.</li>
+                    <li><b>Extracción de Información (IE):</b> Identificar y extraer información estructurada (como nombres, fechas, lugares, o hechos) a partir de texto no estructurado.</li>
+                </ul>
+            </div>
+
+            <div id="pln-tecnicas" class="pln-content">
+                <h3>Técnicas Comunes Utilizadas en PLN 🛠️</h3>
+                <p>Las tareas de PLN se dividen generalmente en niveles de complejidad, desde el preprocesamiento hasta el análisis más profundo. Aquí están algunas de las técnicas más utilizadas:</p>
+                <ul>
+                    <li><b>Tokenización:</b>
+                        <br>Es el proceso de dividir el texto en unidades más pequeñas llamadas <b>tokens</b> (palabras, frases o símbolos). Es el primer paso para preparar el texto para el análisis.
+                    </li>
+                    <li><b>Normalización (Stemming y Lematización):</b>
+                        <br>Ambas buscan reducir las palabras a su forma base. El <b>Stemming</b> recorta el final de la palabra (ej: "corriendo" -> "corr"), mientras que la <b>Lematización</b> usa el vocabulario (léxico) para encontrar la forma base correcta o "lema" (ej: "corriendo" -> "correr").
+                    </li>
+                    <li><b>Eliminación de *Stop Words*:</b>
+                        <br>Consiste en remover palabras muy comunes que no aportan un significado sustancial al análisis (ej: "el", "la", "un", "y"). Esto reduce el ruido y el tamaño de los datos.
+                    </li>
+                    <li><b>Etiquetado de Partes del Discurso (POS Tagging):</b>
+                        <br>Asignar una etiqueta gramatical a cada palabra (ej: sustantivo, verbo, adjetivo, preposición) basándose en su definición y contexto. Ayuda en el análisis sintáctico.
+                    </li>
+                    <li><b>Reconocimiento de Entidades Nombradas (NER):</b>
+                        <br>Identificar y clasificar entidades del mundo real en el texto, como nombres de <b>P</b>ersonas, <b>O</b>anizaciones, <b>L</b>ugares o <b>F</b>echas.
+                    </li>
+                    <li><b>Modelos de Lenguaje (LLMs, Transformers):</b>
+                        <br>Algoritmos avanzados (como BERT, GPT) que aprenden las reglas, el contexto y las relaciones del lenguaje a partir de grandes volúmenes de texto. Son la base para la generación de texto y la traducción de alta calidad.
+                    </li>
+                </ul>
+            </div>
+
+            <div id="pln-caracteristicas" class="pln-content">
+                <h3>Características y Funciones del PLN ✨</h3>
+                <div class="feature-box">
+                    <h4>Características Clave del PLN</h4>
+                    <ul>
+                        <li><b>Multidisciplinariedad:</b> Combina lingüística, informática y IA.</li>
+                        <li><b>Ambigüedad de Manejo:</b> Debe ser capaz de resolver el significado de palabras que pueden tener varios sentidos (ej: "banco" como asiento o entidad financiera) según el contexto.</li>
+                        <li><b>Reconocimiento de Contexto:</b> Entiende que el significado de una palabra o frase puede cambiar drásticamente dependiendo de lo que se dijo antes.</li>
+                        <li><b>Adaptabilidad:</b> Sus modelos pueden ser entrenados y ajustados para diferentes idiomas, dialectos y dominios específicos (legal, médico, técnico).</li>
+                    </ul>
+                    <h4>Funciones Principales y Aplicaciones</h4>
+                    <ul>
+                        <li><b>Análisis de Sentimientos:</b>s Monitorear opiniones en redes sociales, reseñas de productos o comentarios de clientes.</li>
+                        <li><b>Chatbots y Asistentes Virtuales:</b> Responder preguntas, realizar tareas y mantener conversaciones coherentes (ej: Siri, Alexa).</li>
+                        <li><b>Traducción Automática:</b>(Ej: Google Translate) Permite la comunicación global en tiempo real.</li>
+                        <li><b>Resumen Automático:</b> Crear resúmenes concisos de textos largos o documentos.</li>
+                        <li><b>Clasificación de Texto:</b> Categorizar documentos (ej: clasificar correos electrónicos como 'spam' o 'promociones').</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="pln-ejercicio1" class="pln-content">
+                <h3>Ejercicio 1: NLTK y Análisis de Sentimiento en Español (Google Trans)</h3>
+                <div class="exercise-detail">
+                    <p><strong>Descripción:</strong> Se instaló y se utilizó la librería <b>NLTK</b> (Natural Language Toolkit) junto con la librería <b>Google Trans</b> para realizar un análisis de sentimiento.</p>
+                    <p><strong>Proceso Clave:</strong> Se implementó una lógica para que el análisis de sentimiento, que a menudo está optimizado para el inglés, pudiera funcionar en español. Esto probablemente implicó una traducción temporal del texto al inglés antes de aplicar el algoritmo de NLTK y luego presentar el resultado en español.</p>
+                    <p><strong>Códigos implementados:</strong></p>
+                    <div class="contenedor">
+                    <img src="NTLK.png" alt="NTLK"  >
+                    <img src="ANALISIS1.png" alt="ANALISIS1"  >
+                    <img src="ANALISISPY.png" alt="ANALISISPY"  >
+                    </div>
+                </div>
+            </div>
+
+            <div id="pln-ejercicio2" class="pln-content">
+                <h3>Ejercicio 2: Análisis Completo de Texto Multimodelo</h3>
+                <div class="exercise-detail">
+                    <p><strong>Descripción:</strong> Se realizó la instalación de las librerias <b>Gradio</b>, <b>Pandas</b>, <b>Spacy</b>, <b>TextBlob</b>, <b>Transformers</b>, <b>Torch</b> y <b>Numpy</b> para la compilación del analizador de texto de sentimientos que combina análisis lingüístico para máxima precisión.</p>
+                    <p><strong>Funcionalidad Principal:</strong> El uso de <b>Gradio</b> sugiere la creación de una interfaz fácil de usar. Las demás librerías (<b>spaCy</b>, <b>TextBlob</b>, <b>Transformers</b>, <b>Torc</b>) indican un análisis profundo que pudo incluir tokenización, NER, análisis sintáctico y análisis de sentimiento multimodal.</p>
+                    <p><strong>Visualización de APP:</strong> 
+                    <img src="ANALISISCOMPLETO.png" alt="ANALISISCOMPLETO"  class="centrar" width="400">
+
+                </div>
+            </div>
+
+            <div id="pln-ejercicio3" class="pln-content">
+                <h3>Ejercicio 3: Análisis de Sentimientos con Flask</h3>
+                <div class="exercise-detail">
+                    <p><strong>Descripción:</strong> Se desarrolló un servidor web ligero utilizando <b>Flask</b> para ofrecer una aplicación web y una API dedicada al análisis de sentimiento en español.</p>
+                    <p><strong>Proceso Clave:</strong> ste script levanta un servidor Flask que ofrece una app web y una API para analizar sentimientos en español, usando traducción y TextBlob para aumentar precisión.</p>
+                    <p><strong>Visualización de APP:</strong></p>
+                    <img src="ANALISISDESENTIMIENTOS.png" alt="ANALISISDESENTIMIENTOS"  class="centrar" width="400">
+                </div>
+            </div>
+            
+            <div id="pln-ejercicio4" class="pln-content">
+                <h3>Ejercicio 4: Analizador de Texto en Español (Gradio)</h3>
+                <div class="exercise-detail">
+                    <p><strong>Descripción:</strong> Se utilizó <b>Gradio</b> nuevamente para crear un analizador de texto simple y rápido que mostrara el análisis directamente en español.</p>
+                    <p><strong>Proceso Clave:</strong> Se necesita instalar <b>Spacy</b> y <b>OS</b> para el procesamiento y analisis del lenguaje natural (tokens, lemas, gramática, entidades).</p>
+                    <p><strong>Visualización de APP:</strong></p>
+                    <img src="ANALIZADORDETEXTO.png" alt="ANALIZADORDETEXTO"  class="centrar" width="400">
+                </div>
+            </div>
+            
+            <div id="pln-ejercicio5" class="pln-content">
+                <h3>Ejercicio 5: Subir Analizador a Hugging Face (Gradio y Deep Translator)</h3>
+                <div class="exercise-detail">
+                    <p><strong>Descripción:</strong> Adaptación del analizador de sentimiento anterior para ser alojado en la plataforma de <b>Hugging Face Spaces</b>, utilizando <b>Gradio</b> como interfaz.</p>
+                    <p><strong>Inconveniente y Solución:</strong> Se experimentó un error de dependencia con `httpx` al usar <b>Google Trans</b>. La solución fue desinstalarla e instalar <b>Deep_Translator</b> como alternativa para el servicio de traducción.</p>
+                    <p><strong>Cambio de Librería:</strong></p>
+                    <div class="code-block">pip uninstall googletrans<br>pip install deep-translator</div>
+                    <p><strong>Logro:</strong> Implementación exitosa de un analizador de sentimientos en español mediante la traducción, disponible globalmente en Hugging Face Spaces.</p>
+                    <p><strong>Visualización de APP:</strong></p>
+                    <img src="ANALISIS_HUGGING.png" alt="ANALISIS_HUGGING"  class="centrar" width="600">
+                </div>
+            </div>
+            
+            <div id="pln-ejercicio6" class="pln-content">
+                <h3>Ejercicio 6: Analizador de Twitter (X Developers)</h3>
+                <div class="exercise-detail">
+                    <p><strong>Descripción:</strong> Desarrollo de un analizador que interactúa con la API de <b>X</b> para obtener datos de una cuenta y realizar un análisis de su actividad.</p>
+                    <p><strong>Funcionalidad Detallada:</strong>
+                    <ul>
+                        <li>Al ingresar la cuenta, analiza métricas: seguidores, número de tweets, me gustas, etc.</li>
+                        <li>Analiza interacciones con otras personas.</li>
+                        <li>Permite ingresar y analizar los *tweets* individuales publicados por la cuenta.</li>
+                    </ul>
+                    <p><strong>Visualización de APP:</strong></p>
+                    <img src="ANALIZADOR_DE_TWITTER.png" alt="ANALIZADOR_DE_TWITTER"  class="centrar" width="500">
+                </div>
+            </div>
+
+        </div>
+
+        <div id="module2" class="module-content" style="display:none;">
+            <div class="empty-content">
+                <h2>Módulo 2 📝</h2>
+                <p>Este módulo está actualmente vacío. ¡Prepárate para añadir tu próximo tema de estudio!</p>
+            </div>
+        </div>
+        <div id="module3" class="module-content" style="display:none;">
+            <div class="empty-content">
+                <h2>Módulo 3 📝</h2>
+                <p>Este módulo está actualmente vacío. ¡Prepárate para añadir tu próximo tema de estudio!</p>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Funcionalidad JavaScript para las pestañas de Módulos (Nivel Superior)
+        document.addEventListener('DOMContentLoaded', () => {
+            const moduleTabs = document.querySelectorAll('.module-tab');
+            const moduleContents = document.querySelectorAll('.module-content');
+            
+            moduleTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const targetModule = tab.getAttribute('data-module');
+                    
+                    // Desactivar todas las pestañas de módulo y contenidos
+                    moduleTabs.forEach(t => t.classList.remove('active'));
+                    moduleContents.forEach(c => c.style.display = 'none');
+                    
+                    // Activar la pestaña y el contenido del módulo seleccionado
+                    tab.classList.add('active');
+                    document.getElementById(targetModule).style.display = 'block';
+
+                    // Si se activa el Módulo 1, nos aseguramos de que se muestre la primera pestaña de PLN
+                    if (targetModule === 'module1') {
+                        activatePLNTab('pln-que-es');
+                    }
+                });
+            });
+
+            // Funcionalidad JavaScript para las pestañas del Módulo 1 (PLN)
+            const plnTabs = document.querySelectorAll('.pln-tab');
+            const plnContents = document.querySelectorAll('.pln-content');
+
+            function activatePLNTab(targetPln) {
+                // Desactivar todas las pestañas de PLN y contenidos
+                plnTabs.forEach(t => t.classList.remove('active'));
+                plnContents.forEach(c => c.classList.remove('active'));
+                
+                // Activar la pestaña y el contenido del PLN seleccionado
+                document.querySelector(`.pln-tab[data-pln="${targetPln}"]`).classList.add('active');
+                document.getElementById(targetPln).classList.add('active');
+            }
+
+            plnTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const targetPln = tab.getAttribute('data-pln');
+                    activatePLNTab(targetPln);
+                });
+            });
+
+            // Inicialmente activar la primera pestaña de PLN
+            activatePLNTab('pln-que-es');
+        });
+    </script>
+
+</body>
+</html>
