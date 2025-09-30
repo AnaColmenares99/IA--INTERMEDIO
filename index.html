@@ -36,7 +36,7 @@
         header h3 {
             font-size: 1.1em; 
             font-weight: normal; 
-            color: #c4d7ee; /* Color más sutil para los nombres */
+            color: #ffffff; /* Color más sutil para los nombres */
             margin: 0; 
             padding: 0;
         }
@@ -84,34 +84,68 @@
             border-bottom: 3px solid white; /* Simula que la pestaña se une al contenido */
             color: #007bff;
         }
-        /* CAMBIO CLAVE: Se eliminó el border-top de aquí para quitar la línea azul gruesa */
         .module-content {
             padding: 20px 0;
-            /* border-top: 3px solid #007bff; <-- ELIMINADO/CAMBIADO */
             border-top: none; 
         }
-        /* El resto de los estilos .module-content se mantienen */
 
-        /* Estilos para el Módulo 1 (PLN) */
+        /* === ESTILOS PARA LAS PESTAÑAS PLN (Módulo 1) === */
         .pln-tabs {
             display: flex;
             flex-wrap: wrap;
             margin-bottom: 15px;
             border-bottom: 1px solid #007bff;
+    
+             /* CAMBIO CLAVE 1: Centra las filas horizontalmente */
+            justify-content: center; 
+    
+            /* CAMBIO CLAVE 2: Elimina los márgenes izquierdo/derecho para centrar correctamente */
+            margin-left: 0; 
+            margin-right: 0;
+            /* Puedes usar auto si el contenedor principal lo permite, pero mejor lo dejamos en 0 si ya está ancho */
         }
         .pln-tab {
-            padding: 10px 15px;
+            /* Estilos de base para compactación y apariencia */
+            padding: 6px 10px;
             cursor: pointer;
             background-color: #e9ecef;
             border: 1px solid #007bff;
             border-bottom: none;
-            margin-right: 5px;
-            margin-bottom: -1px;
+            
+            margin-right: 3px; /* Espacio entre pestañas */
+            margin-bottom: 4px; 
+            
             border-top-left-radius: 5px;
             border-top-right-radius: 5px;
-            font-size: 0.9em;
+            
+            font-size: 0.8em; 
             transition: background-color 0.3s;
+            
+            white-space: nowrap; 
+            
+            /* CLAVE: Flexbox para asegurar centrado y distribución */
+            display: flex; 
+            justify-content: center; /* Centra el texto horizontalmente */
+            align-items: center; /* Centra el texto verticalmente */
+            text-align: center; /* Fallback para texto centrado */
         }
+
+        /* CLASES DE DISEÑO ESTÉTICO: Distribución de ancho igual */
+
+        /* Para las pestañas que deben ocupar 1/4 del ancho (4 por fila) */
+        .pln-tab.col-4 {
+            /* 1000px / 4 = 250px. Usamos 245px para dejar espacio para márgenes */
+            flex-basis: 245px; 
+            max-width: 245px;
+        }
+
+        /* Para las pestañas que deben ocupar 1/3 del ancho (3 por fila) */
+        .pln-tab.col-3 {
+            /* 1000px / 3 = 333.33px. Usamos 330px para dejar espacio para márgenes */
+            flex-basis: 330px;
+            max-width: 330px;
+        }
+
         .pln-tab:hover {
             background-color: #cfd8e3;
         }
@@ -121,6 +155,9 @@
             border-color: #007bff;
             border-bottom: 1px solid white;
         }
+        /* === FIN ESTILOS PLN === */
+
+
         .pln-content {
             display: none;
             padding: 20px;
@@ -194,16 +231,18 @@
             <h2>Módulo 1: Procesamiento del Lenguaje Natural (PLN) 🗣️</h2>
 
             <div class="pln-tabs" id="pln-tabs">
-                <div class="pln-tab active" data-pln="pln-que-es">¿Qué es?</div>
-                <div class="pln-tab" data-pln="pln-objetivos">Objetivos Principales</div>
-                <div class="pln-tab" data-pln="pln-tecnicas">Técnicas Utilizadas</div>
-                <div class="pln-tab" data-pln="pln-caracteristicas">Características y Funciones</div>
-                <div class="pln-tab" data-pln="pln-ejercicio1">Ejercicio 1: NLTK y Análisis de Sentimiento (Español)</div>
-                <div class="pln-tab" data-pln="pln-ejercicio2">Ejercicio 2: Análisis Multimodelo (Gradio, Pandas, etc.)</div>
-                <div class="pln-tab" data-pln="pln-ejercicio3">Ejercicio 3: Análisis de Sentimientos con Flask</div>
-                <div class="pln-tab" data-pln="pln-ejercicio4">Ejercicio 4: Analizador de Texto en Español (Gradio)</div>
-                <div class="pln-tab" data-pln="pln-ejercicio5">Ejercicio 5: Subir Analizador a Hugging Face (Gradio y Deep Translator)</div>
-                <div class="pln-tab" data-pln="pln-ejercicio6">Ejercicio 6: Analizador de Twitter con X Developers</div>
+                <div class="pln-tab active col-4" data-pln="pln-que-es">¿Qué es?</div>
+                <div class="pln-tab col-4" data-pln="pln-objetivos">Objetivos Principales</div>
+                <div class="pln-tab col-4" data-pln="pln-tecnicas">Técnicas Utilizadas</div>
+                <div class="pln-tab col-4" data-pln="pln-caracteristicas">Características y Funciones</div>
+                
+                <div class="pln-tab col-3" data-pln="pln-ejercicio1">Ej 1: NLTK y Sentimiento (Español)</div>
+                <div class="pln-tab col-3" data-pln="pln-ejercicio2">Ej 2: Análisis Multimodelo</div>
+                <div class="pln-tab col-3" data-pln="pln-ejercicio3">Ej 3: Análisis de Sentimientos con Flask</div>
+                
+                <div class="pln-tab col-3" data-pln="pln-ejercicio4">Ej 4: Analizador de Texto (Gradio)</div>
+                <div class="pln-tab col-3" data-pln="pln-ejercicio5">Ej 5: Analizador en Hugging Face</div>
+                <div class="pln-tab col-3" data-pln="pln-ejercicio6">Ej 6: Analizador de Twitter con X</div>
             </div>
 
             <div id="pln-que-es" class="pln-content active">
@@ -336,7 +375,7 @@
                     <ul>
                         <li>Al ingresar la cuenta, analiza métricas: seguidores, número de tweets, me gustas, etc.</li>
                         <li>Analiza interacciones con otras personas.</li>
-                        <li>Permite ingresar y analizar los *tweets* individuales publicados por la cuenta.</li>
+                        <li>Permite ingresar y analizar los tweets individuales publicados por la cuenta.</li>
                     </ul>
                     <p><strong>Visualización de APP:</strong></p>
                     <img src="ANALIZADOR_DE_TWITTER.png" alt="ANALIZADOR_DE_TWITTER"  class="centrar" width="500">
